@@ -22,7 +22,7 @@
 (setq doom-font (font-spec :family "Source Code Pro for Powerline" :size 17)
       doom-variable-pitch-font (font-spec :family "open sans"))
 
-(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-dracula)
 (add-to-list 'default-frame-alist
              '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist
@@ -205,8 +205,12 @@
 ;; they are implemented.
 
 ;; key bindings
-(when (eq system-type 'darwin) ;; mac specific settings
-  (setq mac-option-modifier 'alt)
-  (setq mac-command-modifier 'meta)
-  (global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
-  )
+;; (when (eq system-type 'darwin) ;; mac specific settings
+;;   (setq mac-option-modifier 'alt)
+;;   (setq mac-option-key-is-meta nil
+;;         mac-command-key-is-meta t
+;;         mac-command-modifier 'meta
+;;         mac-option-modifier 'none)
+;;   ;;  (setq mac-command-Modifier 'Meta)
+;;   ;; (Global-set-key [kp-delete] 'delete-char) ;; sets fn-delete to be right-delete
+;;   )

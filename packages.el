@@ -59,3 +59,4 @@
 (package! org-brain)
 (package! ascii-art-to-unicode)
 (package! wakatime-mode)
+(package! all-the-icons-dired)
