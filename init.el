@@ -14,11 +14,11 @@
 
        :completion
        (company          ; the ultimate code completion backend
-        +tng
         +auto            ; as-you-type code completion
         +childframe)     ; a nicer company UI. Emacs +26 only!
        (ivy
-        +fuzzy); a search engine for love and life
+        +icons
+        +fuzzy)          ; a search engine for love and life
 
        :ui
        deft              ; notational velocity for Emacs
@@ -26,7 +26,6 @@
        doom-dashboard    ; a nifty splash screen for Emacs
        doom-quit         ; DOOM quit-message prompts when you quit Emacs
        ;;fill-column       ; a `fill-column' indicator
-       ophints           ; display visual hints when editing in evil
        hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
        ;;hydra
        ;;indent-guides     ; highlighted indent columns
@@ -38,12 +37,9 @@
         +all             ; catch all popups that start with an asterix
         +defaults)       ; default popup rules
        ;;pretty-code       ; replace bits of code with pretty symbols
-       ;;tabs              ; an tab bar for Emacs
+       tabs              ; an tab bar for Emacs
        treemacs          ; a project drawer, like neotree but cooler
-       (popup            ; tame sudden yet inevitable temporary windows
-        +all             ; catch all popups that start with an asterix
-        +defaults)       ; default popup rules
-       ;;unicode           ; extended unicode support for various languages
+       unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        window-select     ; visually switch windows
@@ -68,7 +64,8 @@
        (dired
         +icons); making dired pretty [functional]
        electric          ; smarter, keyword-based electric-indent
-       ibuffer           ; interactive buffer management
+       (ibuffer           ; interactive buffer management
+        +icons)
        vc                ; version-control and Emacs, sitting in a tree
 
        :term
