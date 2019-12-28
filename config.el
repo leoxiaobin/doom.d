@@ -3,7 +3,6 @@
 ;; Place your private configuration here! Remember, you do not need to run 'doom
 ;; refresh' after modifying this file!
 
-
 ;; These are used for a number of things, particularly for GPG configuration,
 ;; some email clients, file templates and snippets.
 (setq user-full-name "Bin Xiao"
@@ -27,6 +26,7 @@
              '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist
              '(ns-appearance . dark))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 
 (global-auto-revert-mode t)
 
@@ -178,7 +178,7 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. These are the defaults.
-(setq doom-theme 'doom-one)
+;; (setq doom-theme 'doom-one)
 
 ;; If you intend to use org, it is recommended you change this!
 (setq org-directory "~/org/")
