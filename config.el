@@ -32,27 +32,15 @@
 
 (add-hook 'org-mode-hook #'auto-fill-mode)
 
-(defun +org*update-cookies ()
-  (when (and buffer-file-name (file-exists-p buffer-file-name))
-    (let (org-hierarchical-todo-statistics)
-      (org-update-parent-todo-statistics))))
-
 (advice-add #'+org|update-cookies :override #'+org*update-cookies)
 
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
 (setq
- dart-format-on-save t
- web-mode-markup-indent-offset 2
- web-mode-code-indent-offset 2
- web-mode-css-indent-offset 2
  mac-command-modifier 'meta
  org-agenda-skip-scheduled-if-done t
- js-indent-level 2
- typescript-indent-level 2
  json-reformat:indent-width 2
- prettier-js-args '("--single-quote")
  projectile-project-search-path '("~/Source/")
  dired-dwim-target t
  org-ellipsis " ▾ "
@@ -60,7 +48,6 @@
  org-tags-column -80
  org-agenda-files (ignore-errors (directory-files +org-dir t "\\.org$" t))
  org-log-done 'time
- css-indent-offset 2
  org-refile-targets (quote ((nil :maxlevel . 1)))
  org-capture-templates '(("x" "Note" entry
                           (file+olp+datetree "journal.org")
@@ -69,27 +56,26 @@
                           (file+headline "tasks.org" "Inbox")
                           "* [ ] %?\n%i" :prepend t :kill-buffer t))
  +doom-dashboard-banner-file (expand-file-name "logo.png" doom-private-dir)
- +org-capture-todo-file "tasks.org"
- org-super-agenda-groups '((:name "Today"
-                                  :time-grid t
-                                  :scheduled today)
-                           (:name "Due today"
-                                  :deadline today)
-                           (:name "Important"
-                                  :priority "A")
-                           (:name "Overdue"
-                                  :deadline past)
-                           (:name "Due soon"
-                                  :deadline future)
-                           (:name "Big Outcomes"
-                                  :tag "bo")))
+ +org-capture-todo-file "tasks.org")
 
-(add-hook! reason-mode
-  (add-hook 'before-save-hook #'refmt-before-save nil t))
-
-(add-hook!
-  js2-mode 'prettier-js-mode
-  (add-hook 'before-save-hook #'refmt-before-save nil t))
+(def-package! org-super-agenda
+  :after org-agenda
+  :init
+  (setq org-super-agenda-groups '((:name "Today"
+                                         :time-grid t
+                                         :scheduled today)
+                                  (:name "Due today"
+                                         :deadline today)
+                                  (:name "Important"
+                                         :priority "A")
+                                  (:name "Overdue"
+                                         :deadline past)
+                                  (:name "Due soon"
+                                         :deadline future)
+                                  (:name "Big Outcomes"
+                                         :tag "bo")))
+  :config
+  (org-super-agenda))
 
 (map! :ne "M-/" #'comment-or-uncomment-region)
 (map! :ne "SPC / r" #'deadgrep)
@@ -143,36 +129,14 @@
                       :weight 'bold)
   (setq org-fancy-priorities-list '("⚡" "⬆" "⬇" "☕")))
 
-(after! ruby
-  (add-to-list 'hs-special-modes-alist
-               `(ruby-mode
-                 ,(rx (or "def" "class" "module" "do" "{" "[")) ; Block start
-                 ,(rx (or "}" "]" "end"))                       ; Block end
-                 ,(rx (or "#" "=begin"))                        ; Comment start
-                 ruby-forward-sexp nil)))
-
-(after! web-mode
-  (add-to-list 'auto-mode-alist '("\\.njk\\'" . web-mode)))
-
-(defun +data-hideshow-forward-sexp (arg)
-  (let ((start (current-indentation)))
-    (forward-line)
-    (unless (= start (current-indentation))
-      (require 'evil-indent-plus)
-      (let ((range (evil-indent-plus--same-indent-range)))
-        (goto-char (cadr range))
-        (end-of-line)))))
 
 (add-to-list 'hs-special-modes-alist '(yaml-mode "\\s-*\\_<\\(?:[^:]+\\)\\_>" "" "#" +data-hideshow-forward-sexp nil))
-
-(remove-hook 'enh-ruby-mode-hook #'+ruby|init-robe)
 
 (setq +magit-hub-features t)
 
 (set-popup-rule! "^\\*Org Agenda" :side 'bottom :size 0.90 :select t :ttl nil)
 (set-popup-rule! "^CAPTURE.*\\.org$" :side 'bottom :size 0.90 :select t :ttl nil)
 (set-popup-rule! "^\\*org-brain" :side 'right :size 1.00 :select t :ttl nil)
-
 
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
