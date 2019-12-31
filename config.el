@@ -75,7 +75,7 @@
                                   (:name "Big Outcomes"
                                          :tag "bo")))
   :config
-  (org-super-agenda))
+  (org-super-agenda-mode))
 
 (map! :ne "M-/" #'comment-or-uncomment-region)
 (map! :ne "SPC / r" #'deadgrep)
