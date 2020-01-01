@@ -50,3 +50,5 @@
 (package! org-brain)
 (package! ascii-art-to-unicode)
 (package! all-the-icons-dired)
+(package! auctex)
+(package! cdlatex)

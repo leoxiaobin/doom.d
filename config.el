@@ -37,26 +37,31 @@
 (add-hook! 'org-mode-hook (company-mode -1))
 (add-hook! 'org-capture-mode-hook (company-mode -1))
 
-(setq
- mac-command-modifier 'meta
- org-agenda-skip-scheduled-if-done t
- json-reformat:indent-width 2
- projectile-project-search-path '("~/Source/")
- dired-dwim-target t
- org-ellipsis " ▾ "
- org-bullets-bullet-list '("·")
- org-tags-column -80
- org-agenda-files (ignore-errors (directory-files +org-dir t "\\.org$" t))
- org-log-done 'time
- org-refile-targets (quote ((nil :maxlevel . 1)))
- org-capture-templates '(("x" "Note" entry
-                          (file+olp+datetree "journal.org")
-                          "**** [ ] %U %?" :prepend t :kill-buffer t)
-                         ("t" "Task" entry
-                          (file+headline "tasks.org" "Inbox")
-                          "* [ ] %?\n%i" :prepend t :kill-buffer t))
- +doom-dashboard-banner-file (expand-file-name "logo.png" doom-private-dir)
- +org-capture-todo-file "tasks.org")
+(setq mac-command-modifier 'meta
+      org-agenda-skip-scheduled-if-done t
+      json-reformat:indent-width 2
+      projectile-project-search-path '("~/Source/")
+      dired-dwim-target t
+      org-ellipsis " ▾ "
+      org-bullets-bullet-list '("·")
+      org-tags-column -80
+      org-agenda-files (ignore-errors (directory-files +org-dir t "\\.org$" t))
+      org-log-done 'time
+      org-refile-targets (quote ((nil :maxlevel . 1)))
+      ;; org-capture-templates '(("x" "Note" entry
+      ;;                          (file+olp+datetree "journal.org")
+      ;;                          "**** [ ] %U %?" :prepend t :kill-buffer t)
+      ;;                         ("t" "Task" entry
+      ;;                          (file+headline "tasks.org" "Inbox")
+      ;;                          "* [ ] %?\n%i" :prepend t :kill-buffer t))
+      +doom-dashboard-banner-file (expand-file-name "logo.png" doom-private-dir)
+      +org-capture-todo-file "tasks.org")
+
+(setq org-capture-templates
+      '(("t" "todo" entry (file+headline "~/org/todo.org" "Tasks")
+         "* TODO [#A] %?")))
+
+(setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("reading" . ?r)))
 
 (def-package! org-super-agenda
   :after org-agenda
