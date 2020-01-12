@@ -30,6 +30,9 @@
 
 (global-auto-revert-mode t)
 
+(setq ispell-program-name "aspell")
+(setq ispell-dictionary "english")
+
 (add-hook 'org-mode-hook #'auto-fill-mode)
 
 (advice-add #'+org|update-cookies :override #'+org*update-cookies)
